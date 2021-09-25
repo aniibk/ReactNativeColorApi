@@ -6,7 +6,7 @@ const AppBar = () => (
     <Appbar style={styles.bottom}>
         <Appbar.Action
             icon="palette"
-            onPress={() => console.log('Pressed archive')}
+            onPress={() => console.log('Pressed home')}
         />
         <Appbar.Content title="COLOUR Lovers" />
     </Appbar>

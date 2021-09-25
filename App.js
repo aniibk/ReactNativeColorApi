@@ -1,14 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState, useCallback } from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import ColorCard from './components/ColorCard';
 import AppBar from './components/AppBar';
 
 
 const urlapi = "http://www.colourlovers.com/api/colors/?format=json"
-
-//http://www.colourlovers.com/api/colors/top?format=json
-//http://www.colourlovers.com/api/colors/?format=json
 
 
 export default function App() {
