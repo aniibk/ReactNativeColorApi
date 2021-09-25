@@ -1,21 +1,52 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState, useCallback } from 'react';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import ColorCard from './components/ColorCard';
+import AppBar from './components/AppBar';
+
+
+const urlapi = "http://www.colourlovers.com/api/colors/?format=json"
+
+//http://www.colourlovers.com/api/colors/top?format=json
+//http://www.colourlovers.com/api/colors/?format=json
+
 
 export default function App() {
+
+  const [colors, setColors] = useState([]);
+
+  const getColors = useCallback(async () => {
+    const res = await fetch(urlapi);
+    const response = await res.json();
+    setColors(response);
+  }, []);
+
+  useEffect(() => {
+    getColors();
+  }, [getColors]);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+
+      <AppBar/>
+
+      <FlatList
+        data={colors}
+        keyExtractor={({ apiUrl }, index) => apiUrl}
+        renderItem={({ item }) => (
+          <ColorCard item={item} />
+        )}
+      />
+
       <StatusBar style="auto" />
+      
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginVertical: 40,
+
   },
 });
