@@ -1,52 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState, useCallback } from 'react';
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import ColorCard from './components/ColorCard';
-import AppBar from './components/AppBar';
+import React from 'react';
+//import { StyleSheet, View } from 'react-native';
+import  ColorScreen  from './screens/ColorScreen';
+import  HomeScreen  from './screens/HomeScreen';
+import PatternScreen from './screens/PatternScreen';
+import PaletteScreen from './screens/PaletteScreen';
+import  LoginScreen  from './screens/LoginScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-
-const urlapi = "http://www.colourlovers.com/api/colors/?format=json"
-
-//http://www.colourlovers.com/api/colors/top?format=json
-//http://www.colourlovers.com/api/colors/?format=json
-
+const Drawer = createDrawerNavigator();
 
 export default function App() {
-
-  const [colors, setColors] = useState([]);
-
-  const getColors = useCallback(async () => {
-    const res = await fetch(urlapi);
-    const response = await res.json();
-    setColors(response);
-  }, []);
-
-  useEffect(() => {
-    getColors();
-  }, [getColors]);
-
   return (
-    <View style={styles.container}>
-
-      <AppBar/>
-
-      <FlatList
-        data={colors}
-        keyExtractor={({ apiUrl }, index) => apiUrl}
-        renderItem={({ item }) => (
-          <ColorCard item={item} />
-        )}
-      />
-
-      <StatusBar style="auto" />
-      
-    </View>
+    <NavigationContainer>
+        <Drawer.Navigator>
+          <Drawer.Screen name= "Login" component={LoginScreen}/> 
+          <Drawer.Screen name= "Home" component={HomeScreen}/> 
+          <Drawer.Screen name= "Colors" component={ColorScreen}/>
+          <Drawer.Screen name= "Patterns" component={PatternScreen}/>
+          <Drawer.Screen name= "Palettes" component={PaletteScreen}/>
+        </Drawer.Navigator>
+     </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
+/* const styles = StyleSheet.create({
   container: {
     marginVertical: 40,
 
   },
 });
+ */

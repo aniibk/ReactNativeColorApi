@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Card, Title, Paragraph } from 'react-native-paper';
 
 const ColorCard = ({ item }) => {
@@ -14,14 +14,6 @@ const ColorCard = ({ item }) => {
             <Card.Cover source={{ uri: item.imageUrl }} />
 
         </Card>
-        
-        // <TouchableOpacity>
-        //     <View style={styles.textContainer}>
-        //         <Text>{item.title}</Text>
-
-        //         </View>
-
-        // </TouchableOpacity>
     );
 
 }
